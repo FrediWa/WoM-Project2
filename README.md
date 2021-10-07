@@ -1,14 +1,35 @@
 # WoM-Project2
 ## Technologies used
-Built using the ever so popular (just kidding) FRSPH stack.
+Built using the ever so popular (just kidding) FRSMH stack.
 
 The RFPH stack contains of
 - Flask for the Backend
 - React & SCSS for the Frontend
-- Postgres for Database
+- MariaDB/MySQL for Database
 - Heroku for DevOps
 
 ## Development setup
+
+## To-Do 
+### Stugmäklaren
+- [x] Make GET cabins/owned endpoint
+- [ ] Deploy stugmäklaren
+### Backend
+- [ ] Establish DB connection
+- [ ] Set JWT to cookie
+#### Services
+- [ ] GET a list of services
+- [ ] POST a type of service
+- [ ] PATCH a type of service
+- [ ] DELETE a type of service
+#### Orders
+- [ ] GET all orders for cabins you own
+- [ ] POST an order for a specified cabin
+### Frontend
+- [ ] Login screen
+- [ ] Add component for listing your cabins
+- [ ] Add component for editing services for a single cabin
+- [ ] Add component for adding  services to a selected cabin (lightbox modal suggested)
 
 # Rapport
 ## Driftsättning av projekt 1 samt ny endpoint
