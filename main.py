@@ -2,8 +2,14 @@ from flask import Flask
 from flask_restful import Api, Resource
 from dotenv import load_dotenv
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 load_dotenv()
+db_creds = {
+    'uri': os.environ.get('DB_URI'),
+    'user': os.environ.get('DB_USER'),
+    'pass': os.environ.get('DB_PASS')
+} 
 # os.environ.get('TEST')
 
 app = Flask(__name__)
