@@ -1,0 +1,29 @@
+html {
+    font-size: 62.5%; // REM
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+// Font sizes
+$base-font-size: 18px;
+
+p,
+a,
+li,
+span {
+    font-size: $base-font-size;
+}
+
+$heading-scale: 6;
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: $base-font-size + $heading-scale * (6 - $i);
+  }
+}
