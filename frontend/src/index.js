@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.scss';
+import './assets/styles/import.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Import & Export components & pages for nicer App.js import one-liner
+import Footer from './components/Footer';
+import Header from './components/Header';
+
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +17,9 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export {
+  Footer,
+  Header,
+  Login,
+  Dashboard
+}
