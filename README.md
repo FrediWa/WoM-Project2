@@ -1,11 +1,11 @@
 # WoM-Project2
 ## Technologies used
-Built using the ever so popular (just kidding) FRSMH stack.
+Built using the ever so popular (just kidding) FRPH stack.
 
 The RFPH stack contains of
 - Flask for the Backend
 - React & SCSS for the Frontend
-- MariaDB/MySQL for Database
+- Postgres for Database
 - Heroku for DevOps
 
 ## Development setup
