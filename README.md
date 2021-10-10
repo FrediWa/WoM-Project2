@@ -13,13 +13,13 @@ The RFPH stack contains of
 ## To-Do 
 ### Stugmäklaren
 - [x] Make GET cabins/owned endpoint
-- [ ] Deploy stugmäklaren
+- [x] Deploy stugmäklaren
 ### Backend
-- [ ] Establish DB connection
+- [x] Establish DB connection
 - [ ] Set JWT to cookie
 #### Services
-- [ ] GET a list of services
-- [ ] POST a type of service
+- [x] GET a list of services
+- [x] POST a type of service
 - [ ] PATCH a type of service
 - [ ] DELETE a type of service
 #### Orders
