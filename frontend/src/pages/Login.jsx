@@ -1,4 +1,5 @@
 import React from 'react'
+import postReq from '../Utils'
 
 const Field = React.forwardRef(({label, type}, ref) => {
   return (
@@ -9,17 +10,23 @@ const Field = React.forwardRef(({label, type}, ref) => {
   )
 })
 
-const requestLogin = async (email, password) => {
+const requestLogin = async (email, password, loginErr) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, password: password })
+    body: JSON.stringify({ 'email': email, password: password })
   }
-
+ 
   try {
-    // Investigate error. Probably related to CORS. How to fix?
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
-    
+    const token = await response.text()
+    if(token != "E-mail or password incorrect"){
+      const d = new Date()
+      d.setTime(d.getTime() + 1000*60*60*2)
+      
+      
+      document.cookie = "jwt="+token+";expires="+d.toUTCString();
+    } 
   } catch (error) {
     console.log(error);
   }
@@ -28,15 +35,16 @@ const requestLogin = async (email, password) => {
 function Login() {
   const userRef = React.useRef();
   const passRef = React.useRef();
+  const loginErr = React.useRef();
   const handleLogin = async (e) => {
     e.preventDefault()
-    requestLogin(userRef.current.value, passRef.current.value)
+    requestLogin(userRef.current.value, passRef.current.value, loginErr)
   }
   return (
     <form class="login-form" onSubmit={handleLogin}>
         <Field ref={userRef} label="Username:" type="text" />
         <Field ref={passRef} label="Password:" type="password" />
-        <div>
+        <div class="button-wrapper">
           <button type="submit">Login</button>
         </div>
       </form>
