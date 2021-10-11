@@ -32,6 +32,14 @@ class Services(Resource):
         db.execute(sql_query)
         return {"message":'POST'}
     def patch(self):
+        update_string = ""
+        req_body = request.get_json()
+        update_keys = list(req_body.keys())
+        for i in range(1, len(req_body)):
+            # add key/value pairs and commas between all entries
+            update_string += (update_keys[i] + "='"+str(req_body[update_keys[i]])+"'"+(", " if i != len(req_body)-1 else " "))
+        sql_query = "UPDATE services SET "+update_string+"WHERE id='"+str(req_body['id'])+"';"
+        db.execute(sql_query)
         return {'message': "PATCH"}
     def delete(self):
         return {'message': "DELETE"}
