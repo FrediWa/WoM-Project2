@@ -16,7 +16,7 @@ The RFPH stack contains of
 - [x] Deploy stugmäklaren
 ### Backend
 - [x] Establish DB connection
-- [ ] Set JWT to cookie
+- [x] Set JWT to cookie
 #### Services
 - [x] GET a list of services
 - [x] POST a type of service
