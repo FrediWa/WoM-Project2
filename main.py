@@ -42,6 +42,9 @@ class Services(Resource):
         db.execute(sql_query)
         return {'message': "PATCH"}
     def delete(self):
+        req_body = request.get_json()
+        sql_query = "DELETE FROM services WHERE id='"+str(req_body['id'])+"';"
+        db.execute(sql_query)
         return {'message': "DELETE"}
         
 api.add_resource(Services, "/services")
