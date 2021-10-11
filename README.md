@@ -20,8 +20,8 @@ The RFPH stack contains of
 #### Services
 - [x] GET a list of services
 - [x] POST a type of service
-- [ ] PATCH a type of service
-- [ ] DELETE a type of service
+- [x] PATCH a type of service
+- [x] DELETE a type of service
 #### Orders
 - [ ] GET all orders for cabins you own
 - [ ] POST an order for a specified cabin
