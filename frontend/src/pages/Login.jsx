@@ -1,5 +1,4 @@
 import React from 'react'
-import postReq from '../Utils'
 
 const Field = React.forwardRef(({label, type}, ref) => {
   return (
@@ -16,7 +15,7 @@ const requestLogin = async (email, password, loginErr) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 'email': email, password: password })
   }
- 
+  console.log("Attempting to login");
   try {
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
     const token = await response.text()
@@ -24,9 +23,12 @@ const requestLogin = async (email, password, loginErr) => {
       const d = new Date()
       d.setTime(d.getTime() + 1000*60*60*2)
       
-      
       document.cookie = "jwt="+token+";expires="+d.toUTCString();
-    } 
+      console.log("Login success");
+      window.location = "./dashboard"
+    } else {
+      console.log("Incorrect password");
+    }
   } catch (error) {
     console.log(error);
   }
