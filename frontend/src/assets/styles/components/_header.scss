@@ -1,6 +1,33 @@
 .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $dark-secondary;
-    position: absolute;
-    width: 100%;
+    padding: 2rem;
+
+    h4 {
+        margin: 0;
+        text-align: center;
+    }
+
+    &__buttons {
+        display: flex;
+        flex: 0 1 37rem;
+        justify-content: space-between;
+    }
+
+    @media screen and (max-width: $bp-s) {
+        flex-direction: column;
+        justify-content: center;
+
+        &__buttons {
+            flex-direction: column;
+            margin-top: 1rem;
+            flex: 0;
+
+            > button {
+                margin-top: 10px;
+            }
+        }
+    }
 }

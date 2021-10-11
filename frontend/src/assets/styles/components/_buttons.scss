@@ -1,5 +1,6 @@
 .btn {
     padding: 1rem 2rem;
+    text-align: center;
     text-transform: uppercase;
     background-color: transparent;
     border: 2px solid $color-primary;
@@ -13,4 +14,14 @@
         background-color: $color-primary;
         color: $dark-secondary;
     }
+
+    &--danger {
+        border-color: $color-danger;
+        color: $color-danger;
+        
+        &:hover {
+            background-color: $color-danger;
+            color: $dark-secondary;
+        }
+    }    
 }

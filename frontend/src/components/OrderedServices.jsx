@@ -9,8 +9,8 @@ function OrderedServices() {
 
                 </div>
                 <div class='orderedServices__buttons'>
-                    <button class='btn'>Change</button>
-                    <button class='btn'>Delete</button>
+                    <button class='btn'>Edit <i class="far fa-edit"></i></button>
+                    <button class='btn btn--danger'>Delete <i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
         </div>

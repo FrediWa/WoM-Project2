@@ -5,7 +5,7 @@ import OrderedServices from '../components/OrderedServices';
 function Dashboard() {
     return (
         <div className='dashboard'>
-            <div>
+            <div class='dashboard__wrapper'>
                 <AddService />
                 <OrderedServices />
             </div>
