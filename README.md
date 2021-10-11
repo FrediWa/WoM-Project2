@@ -27,7 +27,8 @@ The RFPH stack contains of
 - [ ] POST an order for a specified cabin
 ### Frontend
 - [x] Login screen
-- [ ] Fix error related to login, info in `Login.jsx`
+- [x] Login with JWT as cookie
+- [x] Logout
 - [ ] Add component for listing your cabins
 - [ ] Add component for editing services for a single cabin
 - [ ] Add component for adding  services to a selected cabin (lightbox modal suggested)
