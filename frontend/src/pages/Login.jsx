@@ -20,7 +20,13 @@ const requestLogin = async (email, password, loginErr) => {
   try {
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
     const token = await response.text()
-    if(token != "E-mail or password incorrect") document.cookie = "jwt="+token;
+    if(token != "E-mail or password incorrect"){
+      const d = new Date()
+      d.setTime(d.getTime() + 1000*60*60*2)
+      
+      
+      document.cookie = "jwt="+token+";expires="+d.toUTCString();
+    } 
   } catch (error) {
     console.log(error);
   }
