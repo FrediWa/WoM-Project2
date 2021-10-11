@@ -1,0 +1,21 @@
+.component {
+    background-color: $dark-secondary;
+    border-radius: $border-radius;
+    padding: 3rem;
+    margin: 2rem;
+    flex: 1 1 auto;
+    min-width: 30rem;
+    min-height: 30rem;
+
+    @media screen and (max-width: $bp-s) {
+        min-width: auto;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+    }
+}

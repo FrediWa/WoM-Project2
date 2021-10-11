@@ -2,3 +2,7 @@ body {
     background-color: $dark-primary;
     color: $white;
 }
+
+html, body, #root, .App {
+    height: 100%;
+}

@@ -1,0 +1,16 @@
+.btn {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 2px solid $color-primary;
+    border-radius: $border-radius;
+    color: $color-primary;
+    font-weight: 700;
+    cursor: pointer;
+    transition: $transition-time;
+
+    &:hover {
+        background-color: $color-primary;
+        color: $dark-secondary;
+    }
+}

@@ -5,6 +5,13 @@
 @import 'base/global';
 
 // Components
+@import 'components/components';
 @import 'components/footer';
 @import 'components/header';
 @import 'components/login-form';
+@import 'components/addService';
+@import 'components/buttons';
+@import 'components/orderedServices';
+
+// Pages
+@import 'pages/dashboard';
