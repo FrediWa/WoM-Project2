@@ -45,7 +45,7 @@ function Login() {
         <Field ref={userRef} label="Username:" type="text" />
         <Field ref={passRef} label="Password:" type="password" />
         <div class="button-wrapper">
-          <button type="submit">Login</button>
+          <button type="submit" class="btn">Login</button>
         </div>
       </form>
   );
