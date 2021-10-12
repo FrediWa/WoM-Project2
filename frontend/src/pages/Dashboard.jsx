@@ -1,11 +1,10 @@
 import React from 'react';
-import AddService from '../components/AddService';
-import OrderedServices from '../components/OrderedServices';
+import { AddService, OrderedServices } from '../index';
 
 function Dashboard() {
     return (
         <div className='dashboard'>
-            <div class='dashboard__wrapper'>
+            <div className='dashboard__wrapper'>
                 <AddService />
                 <OrderedServices />
             </div>
