@@ -50,6 +50,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault()
     requestLogin(userRef.current.value, passRef.current.value, loginErr)
+    passRef.current.value = ""
   }
 
   return (
