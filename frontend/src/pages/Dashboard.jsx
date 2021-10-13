@@ -1,15 +1,15 @@
-import React from 'react';
-import { AddService, OrderedServices } from '../index';
+import React from 'react'
+import { SelectCabin, OrderedServices } from '../index'
 
 function Dashboard() {
     return (
         <div className='dashboard'>
             <div className='dashboard__wrapper'>
-                <AddService />
+                <SelectCabin />
                 <OrderedServices />
             </div>
         </div>
-    );
+    )
 }
 
-export default Dashboard;
+export default Dashboard

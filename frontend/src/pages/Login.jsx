@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import ErrorModal from '../components/ErrorModal'
 
 const Field = React.forwardRef(({label, type}, ref) => {
   return (
@@ -20,8 +22,8 @@ const requestLogin = async (email, password, loginErr) => {
 
   try {
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
-    const token = await response.text()
-    const regex = /.{36}\..{126}\..{43}/
+    const token    = await response.text()
+    const regex    = /.{36}\..{126}\..{43}/
 
     if (token.match(regex)){
       const d = new Date()
@@ -32,7 +34,8 @@ const requestLogin = async (email, password, loginErr) => {
       window.location = './dashboard'
 
     } else {
-      console.error('Incorrect password')
+      ReactDOM.render(<ErrorModal />, document.getElementById('error-modal'));
+      console.error('Incorrect Login Details')
     }
 
   } catch (error) {
@@ -56,7 +59,8 @@ function Login() {
         <div className='button-wrapper'>
           <button type='submit' className='btn'>Login</button>
         </div>
-      </form>
+        <div id='error-modal'></div>
+    </form>
   )
 }
 

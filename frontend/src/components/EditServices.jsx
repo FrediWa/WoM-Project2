@@ -4,7 +4,7 @@ function OrderedServices() {
     return(
         <div className='orderedServices component'>
             <div className='component__wrapper'>
-                <h5>Ordered Services</h5>
+                <h5>Edit / Delete Services</h5>
                 <div className='orderedServices__grid'>
 
                 </div>
