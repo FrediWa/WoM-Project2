@@ -15,7 +15,7 @@ const requestLogin = async (email, password, loginErr) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'email': email, password: password })
+    body: JSON.stringify({ 'email': email, 'password': password })
   }
 
   console.info('Attempting to login')
@@ -23,7 +23,8 @@ const requestLogin = async (email, password, loginErr) => {
   try {
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
     const token    = await response.text()
-    const regex    = /.{36}\..{126}\..{43}/
+    console.log(token);
+    const regex    = /.{36}\..+\..{43}/
 
     if (token.match(regex)){
       const d = new Date()
