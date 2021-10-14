@@ -5,6 +5,7 @@ import os, sys
 from sqlalchemy import create_engine
 import requests
 from flongo import authenticate, authorizeCabin
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -14,6 +15,8 @@ db = create_engine(db_uri)
 
 app = Flask(__name__)
 api = Api(app)
+
+CORS(app)
 
 db.execute("CREATE TABLE IF NOT EXISTS services (id serial NOT NULL primary key, service varchar(20) NOT NULL, description varchar(300), cost smallint NOT NULL);")  
 db.execute("CREATE TABLE IF NOT EXISTS orders (id serial NOT NULL primary key, cabin_id varchar(200) NOT NULL, service smallint NOT NULL, start_date integer, end_date integer);")  
