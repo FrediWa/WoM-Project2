@@ -13,7 +13,7 @@ class SelectCabin extends React.Component {
     componentDidMount() {
         const JWT = document.cookie.split('expires').find(row => row.startsWith('jwt=')).split('=')[1];
 
-        fetch("https://wom-project-1.herokuapp.com/cabins/owned", {
+        fetch("http://localhost:5000/cabins", {
             method: 'GET',
             headers: new Headers({
                 'Authorization': 'Bearer ' + JWT
