@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_restful import Api, Resource
 from dotenv import load_dotenv
 import os, sys
@@ -19,7 +19,7 @@ api = Api(app)
 CORS(app)
 
 db.execute("CREATE TABLE IF NOT EXISTS services (id serial NOT NULL primary key, service varchar(20) NOT NULL, description varchar(300), cost smallint NOT NULL);")  
-db.execute("CREATE TABLE IF NOT EXISTS orders (id serial NOT NULL primary key, cabin_id varchar(200) NOT NULL, service smallint NOT NULL, start_date integer, end_date integer);")  
+db.execute("CREATE TABLE IF NOT EXISTS orders (id serial NOT NULL primary key, cabin_id varchar(200) NOT NULL, service smallint NOT NULL, start_date bigint, end_date bigint);")  
 
 class Cabins(Resource):
     def get(self): 
@@ -60,29 +60,29 @@ class Services(Resource):
         sql_query = "DELETE FROM services WHERE id='"+str(req_body['id'])+"';"
         db.execute(sql_query)
         return {'message': "DELETE"}
-    
-class Orders(Resource):
-    def get(self):
-        req_body = request.get_json()
+
+class GetOrders(Resource):
+    def get(self, cabin):
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
-            query_results = db.execute("SELECT json_agg(orders) FROM orders WHERE cabin_id=%s", req_body["cabinId"])
+            query_results = db.execute("SELECT json_agg(orders) FROM orders WHERE cabin_id=%s", cabin)
             results_array = []
             for row in query_results:
                 for entry in row:
                     results_array.append(entry)
             return{"Results":results_array}
 
+class Orders(Resource):
     def post(self):
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
             req_body = request.get_json()
             if authorizeCabin(jwt, req_body["cabinId"]):
-
-                sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
-                db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
+                if req_body["service"] < 32767 and req_body["service"] > -32767:
+                    sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
+                    db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
 
 
     def patch(self):
@@ -93,10 +93,9 @@ class Orders(Resource):
                 print("Authenticated", file=sys.stderr)
                 update_string = "" 
                 update_keys = list(req_body.keys())
-                if 'cabinId' in update_keys:
-                    update_string += "cabin_id='"+req_body["cabinId"]+"', "
                 if 'service' in update_keys:
-                    update_string += "service='"+str(req_body["service"])+"', "
+                    if req_body["service"] < 32767 and req_body["service"] > -32767:
+                        update_string += "service='"+str(req_body["service"])+"', "
                 if 'startDate' in update_keys:
                     update_string += "start_date='"+str(req_body["startDate"])+"', "
                 if 'endDate' in update_keys:
@@ -115,9 +114,9 @@ class Orders(Resource):
             db.execute(sql_query)
 
 api.add_resource(Services, "/services")        
-api.add_resource(Orders, "/orders")
+api.add_resource(Orders, "/orders") 
+api.add_resource(GetOrders, "/getorders/<string:cabin>") 
 api.add_resource(Cabins, "/cabins")
-
 
 if __name__ == "__main__":
     app.run(debug=True)
