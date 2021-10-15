@@ -63,10 +63,11 @@ class Services(Resource):
     
 class Orders(Resource):
     def get(self):
+        req_body = request.get_json()
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
-            query_results = db.execute("SELECT json_agg(orders) FROM orders")
+            query_results = db.execute("SELECT json_agg(orders) FROM orders WHERE cabin_id=%s", req_body["cabinId"])
             results_array = []
             for row in query_results:
                 for entry in row:
