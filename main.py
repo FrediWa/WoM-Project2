@@ -80,9 +80,9 @@ class Orders(Resource):
             print("Authenticated", file=sys.stderr)
             req_body = request.get_json()
             if authorizeCabin(jwt, req_body["cabinId"]):
-
-                sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
-                db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
+                if req_body["service"] < 32767 and req_body["service"] > -32767:
+                    sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
+                    db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
 
 
     def patch(self):
@@ -93,10 +93,9 @@ class Orders(Resource):
                 print("Authenticated", file=sys.stderr)
                 update_string = "" 
                 update_keys = list(req_body.keys())
-                if 'cabinId' in update_keys:
-                    update_string += "cabin_id='"+req_body["cabinId"]+"', "
                 if 'service' in update_keys:
-                    update_string += "service='"+str(req_body["service"])+"', "
+                    if req_body["service"] < 32767 and req_body["service"] > -32767:
+                        update_string += "service='"+str(req_body["service"])+"', "
                 if 'startDate' in update_keys:
                     update_string += "start_date='"+str(req_body["startDate"])+"', "
                 if 'endDate' in update_keys:
