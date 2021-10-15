@@ -23,7 +23,7 @@ const requestLogin = async (email, password, loginErr) => {
   try {
     const response = await fetch('https://wom-project-1.herokuapp.com/users/login', requestOptions)
     const token    = await response.text()
-    console.log(token);
+    console.log(token)
     const regex    = /.{36}\..+\..{43}/
 
     if (token.match(regex)){
@@ -35,7 +35,7 @@ const requestLogin = async (email, password, loginErr) => {
       window.location = './dashboard'
 
     } else {
-      ReactDOM.render(<ErrorModal />, document.getElementById('error-modal'));
+      ReactDOM.render(<ErrorModal />, document.getElementById('error-modal'))
       console.error('Incorrect Login Details')
     }
 

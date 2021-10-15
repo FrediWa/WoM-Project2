@@ -7,7 +7,7 @@ import App from './App'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import SelectCabin from './components/SelectCabin'
-import OrderedServices from './components/EditServices'
+import EditServices from './components/EditServices'
 
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
@@ -23,7 +23,7 @@ export {
   Footer,
   Header,
   SelectCabin,
-  OrderedServices,
+  EditServices,
   Login,
   Dashboard
 }
