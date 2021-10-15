@@ -3,12 +3,17 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin: 2rem;
 
     &__wrapper {
         display: flex;
         flex-direction: row;
         flex: 1 1 auto;
         max-width: 100rem;
+
+        > * {
+            flex: 1 1 auto;
+        }
 
         @media screen and (max-width: $bp-s) {
             flex: 1;

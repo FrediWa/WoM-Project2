@@ -1,68 +1,71 @@
-import React from 'react';
+import React from 'react'
 
 class SelectCabin extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
           error: null,
           isLoaded: false,
-          items: []
+          cabins: []
         }
     }
     
     componentDidMount() {
-        const JWT = document.cookie.split('expires').find(row => row.startsWith('jwt=')).split('=')[1];
+        const JWT = document.cookie.split('expires').find(row => row.startsWith('jwt=')).split('=')[1]
 
-        fetch("http://localhost:5000/cabins", {
+        fetch('https://wom-project-1.herokuapp.com/cabins/owned', {
             method: 'GET',
             headers: new Headers({
                 'Authorization': 'Bearer ' + JWT
             })
         })
-            .then(res => res.json())
-            .then(
-                (cabins) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: cabins
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    })
-                }
-            )
-        .catch(error => {
-            this.setState({
-                isLoaded: false,
-                error
-            })
-        })
+        .then(res => res.json())
+        .then(
+            (results) => {
+                this.setState({
+                    isLoaded: true,
+                    cabins: results
+                })
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                })
+            }
+        )
+    }
+
+    cabinClicked = (e) => {
+        if (this.props.onCabinClick) {
+            this.props.onCabinClick(e.target)
+        }
     }
     
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, cabins } = this.state
+        
         if (error) {
-            return <p>Error: {error.message}</p>;
+            return <p>Error: {error.message}</p>
         } else if (!isLoaded) {
-            return <p>Loading your cabins...</p>;
+            return <p>Loading your cabins...</p>
         } else {
-            return (
+            return <>
                 <div className='addService component'>
                     <div className='component__wrapper'>
-                        <h5>Your Cabins</h5>
+                        <h4>Your Cabins</h4>
+                        <p>Please select a cabin</p>
+                
                         <ul>
-                            {items.map(item => (
-                                <li key={item._id}> {item.address} </li>
+                            {cabins.map(cabin => (
+                                <li onClick={this.cabinClicked} key={cabin._id} cabin-id={cabin._id}>{cabin.address}</li>
                             ))}
                         </ul>
                     </div>
                 </div>
-            )
+            </>
         }
     }
 }
 
-export default SelectCabin;
+export default SelectCabin

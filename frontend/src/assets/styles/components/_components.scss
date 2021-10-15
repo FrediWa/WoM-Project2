@@ -9,7 +9,10 @@
     &__wrapper {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         width: 100%;
+    }
+
+    @media screen and (max-width: $bp-s) {
+        margin: 2rem 0;
     }
 }
