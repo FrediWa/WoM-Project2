@@ -34,7 +34,8 @@ The RFPH stack contains of
 - [x] Logout
 - [x] Add component for listing your cabins
 - [ ] Add component for editing services for a single cabin
-- [ ] Add component for adding  services to a selected cabin (lightbox modal suggested)
+- [x] Add component for adding  services to a selected cabin (lightbox modal suggested)
+- [x] Delete a service
 
 # Rapport
 Jag försökte göra mitt bästa med requirements filen. Jag är inte hemskt bekant med Python utveckling så visste inte riktigt hur jag ens skulle testa att det funkade. Hoppas det inte blir några problem. Vi delade upp arbetet ganska långt så att jag skötte backenden och Samuel skötte frontenden. Vi har båda dock gjort lite av allting.
