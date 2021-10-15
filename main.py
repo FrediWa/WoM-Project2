@@ -19,7 +19,7 @@ api = Api(app)
 CORS(app)
 
 db.execute("CREATE TABLE IF NOT EXISTS services (id serial NOT NULL primary key, service varchar(20) NOT NULL, description varchar(300), cost smallint NOT NULL);")  
-db.execute("CREATE TABLE IF NOT EXISTS orders (id serial NOT NULL primary key, cabin_id varchar(200) NOT NULL, service smallint NOT NULL, start_date integer, end_date integer);")  
+db.execute("CREATE TABLE IF NOT EXISTS orders (id serial NOT NULL primary key, cabin_id varchar(200) NOT NULL, service smallint NOT NULL, start_date bigint, end_date bigint);")  
 
 class Cabins(Resource):
     def get(self): 
