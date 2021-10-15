@@ -26,8 +26,8 @@ The RFPH stack contains of
 - [x] GET all cabins you own
 - [x] GET all orders for a specified cabin
 - [x] POST an order for a specified cabin
-- [ ] PATCH order
-- [ ] DELETE order
+- [x] PATCH order
+- [x] DELETE order
 ### Frontend
 - [x] Login screen
 - [x] Login with JWT as cookie
