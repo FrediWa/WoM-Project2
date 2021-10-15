@@ -1,0 +1,17 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY1ODM2YzQ3MGYxNjM4ZGFkMjhjMWQiLCJlbWFpbCI6InRlc3QyQGFyY2FkYS5maSIsImlhdCI6MTYzNDMxNzQ2NCwiZXhwIjoxNjM0NDAzODY0fQ.wwuLc_I-q5GJSDj0g82eB7sxaiesQmCbwydeahaimaA
+
+POST https://wom-proj2-fk.herokuapp.com/orders
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"cabinId": "6166ca3119866a2c9d1e0cb4",
+	"endDate": "1637094271800",
+	"service": "11",
+	"startDate": "1636921471800"
+}
+
+###
+
+GET https://wom-proj2-fk.herokuapp.com/getorders/6166ca3119866a2c9d1e0cb4
+Authorization: Bearer {{token}}

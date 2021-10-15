@@ -40,9 +40,14 @@ The RFPH stack contains of
 Jag försökte göra mitt bästa med requirements filen. Jag är inte hemskt bekant med Python utveckling så visste inte riktigt hur jag ens skulle testa att det funkade. Hoppas det inte blir några problem. Vi delade upp arbetet ganska långt så att jag skötte backenden och Samuel skötte frontenden. Vi har båda dock gjort lite av allting.
 -Fredi
 
+- Jag tyckte det gick bra att arbeta tillsammans, vi hjälpte varandra och jag tror att vi båda lärt oss mycket nytt. Tyckte det var kul, och lärde mig mycket nytt. 
+
 ## Driftsättning av projekt 1 samt ny endpoint
 Här var det super mycket strul. Tror att jag pushade ännu några dagar före inlämningen sista ändringarna som Projekt 2 krävde. Samuel fixade driftsättningen men blev trött på mej efter en stund när jag bad honom göra det hela tiden så gav han mej rättigheter att göra driftsättningar själv. Det var ganska skönt att se hur lätt det är att göra en driftsättning med Git och Heroku CLI.
 -Fredi
+
+Driftsättningen tyckte jag gick helt bra, Heroku och dess guides var bra att arbeta med och det fans mycket info online.
+- Samuel
 
 ##  REST API för underhållstjänster
 Jag fixade GET/POST/PATCH/DELETE endpoints åt services. Dessa tyckte jag att inte behövde autentisering. Det stod inte något om det i projektbeskrivningen och dessutom tänkte jag att det blir onödigt då användare inte har roller (då kan ju vilken användare som helst göra det anyway). 
@@ -59,5 +64,5 @@ Vi hade en del problem med CORS men StackOverflow hjälpte till med det :D
 -Fredi
 
 ## Grafisk app
-
-
+Jobbade en del med att få react appen att fungera bra. Tycker att state och ref var svårt att ta sig ann. Sen ang. CSS och sådant så fixade det sig lätt, tycker appen ser helt bra ut nu. Skulle gärna fixa lite mera styling. 
+- Samuel

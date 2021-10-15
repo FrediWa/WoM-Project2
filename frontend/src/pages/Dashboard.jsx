@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
             <div className='dashboard'>
                 <div className='dashboard__wrapper'>
                     <SelectCabin onCabinClick={this.onCabinClick} />
-                    <EditServices cabin={this.state.currentCabin} />
+                    {this.state.currentCabin.attributes ? <EditServices cabin={this.state.currentCabin}/> : <p></p> }
                 </div>
             </div>
         </>
