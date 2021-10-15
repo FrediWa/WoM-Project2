@@ -79,20 +79,40 @@ class Orders(Resource):
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
             req_body = request.get_json()
-            authorizeCabin(jwt, req_body["cabinId"])
+            if authorizeCabin(jwt, req_body["cabinId"]):
 
-            sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
-            db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
+                sql_query = "INSERT INTO orders (service, cabin_id, start_date, end_date) VALUES (%s, %s, %s, %s)"
+                db.execute(sql_query, (req_body["service"], req_body["cabinId"], req_body["startDate"], req_body['endDate']))
 
 
     def patch(self):
         jwt = request.headers["Authorization"].split()[1]
+        req_body = request.get_json()
         if authenticate(jwt):
-            print("Authenticated", file=sys.stderr)
+            if authorizeCabin(jwt, req_body["cabinId"]):
+                print("Authenticated", file=sys.stderr)
+                update_string = "" 
+                update_keys = list(req_body.keys())
+                if 'cabinId' in update_keys:
+                    update_string += "cabin_id='"+req_body["cabinId"]+"', "
+                if 'service' in update_keys:
+                    update_string += "service='"+str(req_body["service"])+"', "
+                if 'startDate' in update_keys:
+                    update_string += "start_date='"+str(req_body["startDate"])+"', "
+                if 'endDate' in update_keys:
+                    update_string += "end_date='"+str(req_body["endDate"])+"', "
+                update_string = update_string[0:len(update_string)-2] # Remove whitespace and comma
+
+                sql_query = "UPDATE orders SET "+update_string+" WHERE id='"+str(req_body['id'])+"' AND cabin_id='"+str(req_body['cabinId'])+"';"
+                db.execute(sql_query)
+    
     def delete(self):
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
+            req_body = request.get_json()
+            sql_query = "DELETE FROM orders WHERE id='"+str(req_body['id'])+"';"
+            db.execute(sql_query)
 
 api.add_resource(Services, "/services")        
 api.add_resource(Orders, "/orders")
