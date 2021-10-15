@@ -8,7 +8,20 @@ The RFPH stack contains of
 - Postgres for Database
 - Heroku for DevOps
 
-## Development setup
+## Testing setup
+Everything else should be live, just use `npm start` in the frontend directory to start the React app. 
+
+Make the following request to register:
+```
+POST https://wom-project-1.herokuapp.com/users/login
+Content-Type: application/json
+
+{
+    "email": "email",
+    "password": "password"
+}
+```
+Use these credentials to login to the React app.
 
 ## To-Do 
 ### Stugmäklaren
