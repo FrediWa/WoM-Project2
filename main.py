@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_restful import Api, Resource
 from dotenv import load_dotenv
 import os, sys
@@ -60,20 +60,20 @@ class Services(Resource):
         sql_query = "DELETE FROM services WHERE id='"+str(req_body['id'])+"';"
         db.execute(sql_query)
         return {'message': "DELETE"}
-    
-class Orders(Resource):
-    def get(self):
-        req_body = request.get_json()
+
+class GetOrders(Resource):
+    def get(self, cabin):
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
             print("Authenticated", file=sys.stderr)
-            query_results = db.execute("SELECT json_agg(orders) FROM orders WHERE cabin_id=%s", req_body["cabinId"])
+            query_results = db.execute("SELECT json_agg(orders) FROM orders WHERE cabin_id=%s", cabin)
             results_array = []
             for row in query_results:
                 for entry in row:
                     results_array.append(entry)
             return{"Results":results_array}
 
+class Orders(Resource):
     def post(self):
         jwt = request.headers["Authorization"].split()[1]
         if authenticate(jwt):
@@ -114,9 +114,9 @@ class Orders(Resource):
             db.execute(sql_query)
 
 api.add_resource(Services, "/services")        
-api.add_resource(Orders, "/orders")
+api.add_resource(Orders, "/orders") 
+api.add_resource(GetOrders, "/getorders/<string:cabin>") 
 api.add_resource(Cabins, "/cabins")
-
 
 if __name__ == "__main__":
     app.run(debug=True)
